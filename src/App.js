@@ -24,6 +24,7 @@ export default function App() {
   }, []);
 
   async function handleLikeRepository(id) {
+    setRefresh(false);
     const response = await api.post(`repositories/${id}/like`);
 
     if (response.status == 404) return;
@@ -39,6 +40,7 @@ export default function App() {
     newRepositories[repositoryIndex] = updatedRepository;
 
     setRepositories(newRepositories);
+    setRefresh(true);
   }
 
   return (
